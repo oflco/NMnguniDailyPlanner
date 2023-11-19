@@ -1,8 +1,10 @@
-package com.nmnguni.nmngunidailyplanner;
+package com.nmnguni.nmngunidailyplanner.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.nmnguni.nmngunidailyplanner.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">NMnguniDailyPlanner</string>
     <string name="AppTitle">NMnguni Daily Planner</string>
+    <string name="AppointmentDate">Date</string>
+    <string name="AppointmentMustDo">Must Do</string>
+    <string name="AppointmentContent">Appointments</string>
+    <string name="ToDoList">To do list</string>
+    <string name="OptionGroceries">Groceries</string>
+    <string name="OptionGym">Gym</string>
+    <string name="AppointmentView">View</string>
+    <string name="AppointmentInsert">Insert</string>
+    <string name="NoteTitle">Title</string>
+    <string name="NoteContent">Notes</string>
+    <string name="InsertNote">Insert</string>
+    <string name="NotesView">View</string>
 </resources>

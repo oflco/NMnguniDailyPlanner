@@ -4,101 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <EditText
-        android:id="@+id/tv_appointmentDate"
+        android:id="@+id/et_appointmentDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Date"
+        android:hint="@string/AppointmentDate"
         android:inputType="text"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
     <EditText
-        android:id="@+id/tv_appointmentMustdo"
+        android:id="@+id/et_appointmentMustdo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Must Do"
+        android:hint="@string/AppointmentMustDo"
         android:inputType="text"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_appointmentDate" />
+        app:layout_constraintTop_toBottomOf="@+id/et_appointmentDate"
+        tools:ignore="Autofill,TouchTargetSizeCheck,VisualLintTextFieldSize,TextContrastCheck" />
 
     <EditText
-        android:id="@+id/tv_appointmentContent"
+        android:id="@+id/et_appointmentContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Appointments"
+        android:hint="@string/AppointmentContent"
         android:inputType="text"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_appointmentMustdo" />
+        app:layout_constraintTop_toBottomOf="@+id/et_appointmentMustdo"
+        tools:ignore="Autofill,TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
     <TextView
-        android:id="@+id/tv_toDo"
+        android:id="@+id/tv_toDoList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="To do list"
+        android:text="@string/ToDoList"
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_appointmentContent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_appointmentContent" />
 
     <RadioButton
-        android:id="@+id/rdo_Groceries"
+        android:id="@+id/rdo_optionGroceries"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Groceries"
+        android:text="@string/OptionGroceries"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_toDo" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_toDoList"
+        tools:ignore="VisualLintButtonSize" />
 
     <RadioButton
-        android:id="@+id/radioButton2"
+        android:id="@+id/rdo_optionGym"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Gym"
+        android:text="@string/OptionGym"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdo_Groceries" />
+        app:layout_constraintTop_toBottomOf="@+id/rdo_optionGroceries"
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:id="@+id/btn_viewAll"
+        android:id="@+id/btn_appointmentView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="View All"
+        android:text="@string/AppointmentView"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/btn_insert"
+        app:layout_constraintEnd_toStartOf="@+id/btn_appointmentInsert"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/rdo_optionGym" />
 
     <Button
-        android:id="@+id/btn_insert"
+        android:id="@+id/btn_appointmentInsert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Insert"
+        android:text="@string/AppointmentInsert"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_viewAll"
-        app:layout_constraintStart_toEndOf="@id/btn_viewAll"
-        />
+        app:layout_constraintStart_toEndOf="@id/btn_appointmentView"
+        app:layout_constraintTop_toTopOf="@+id/btn_appointmentView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lv_appointmentsList"
@@ -108,5 +113,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_viewAll" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_appointmentView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
