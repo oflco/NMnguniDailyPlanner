@@ -7,24 +7,24 @@
     tools:context=".ui.NotesActivity">
 
     <Button
-        android:id="@+id/btn_insertNote"
+        android:id="@+id/btn_noteInsertOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/InsertNote"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@id/btn_notesView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_notesView" />
+        app:layout_constraintStart_toEndOf="@id/btn_notesViewAll"
+        app:layout_constraintTop_toTopOf="@+id/btn_notesViewAll" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lv_notesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_insertNote" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_notesList" />
 
     <EditText
         android:id="@+id/et_noteTitle"
@@ -32,14 +32,37 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/NoteTitle"
         android:inputType="text"
-        android:text="@string/NoteTitle"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_noteDate"
         tools:ignore="Autofill,LabelFor,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+    <Button
+        android:id="@+id/btn_notesViewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/NotesView"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/btn_noteInsertOne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_noteContent" />
+
+    <EditText
+        android:id="@+id/et_noteDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/NoteDate"
+        android:inputType="datetime"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_noteContent"
@@ -47,23 +70,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/NoteContent"
         android:inputType="text"
-        android:text="@string/NoteContent"
         android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_noteTitle" />
+
+    <TextView
+        android:id="@+id/tv_notesList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/NotesList"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_noteTitle"
-        tools:ignore="Autofill,LabelFor,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_notesViewAll" />
 
-    <Button
-        android:id="@+id/btn_notesView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/NotesView"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/btn_insertNote"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_noteContent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

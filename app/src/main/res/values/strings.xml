@@ -3,14 +3,18 @@
     <string name="AppTitle">NMnguni Daily Planner</string>
     <string name="AppointmentDate">Date</string>
     <string name="AppointmentMustDo">Must Do</string>
-    <string name="AppointmentContent">Appointments</string>
+    <string name="AppointmentContent">Appointment</string>
     <string name="ToDoList">To do list</string>
     <string name="OptionGroceries">Groceries</string>
     <string name="OptionGym">Gym</string>
     <string name="AppointmentView">View</string>
     <string name="AppointmentInsert">Insert</string>
     <string name="NoteTitle">Title</string>
-    <string name="NoteContent">Notes</string>
+    <string name="NoteContent">Note</string>
     <string name="InsertNote">Insert</string>
     <string name="NotesView">View</string>
+    <string name="AppointmentMustDoContent">Must Do</string>
+    <string name="NoteDate">Date</string>
+    <string name="AppointmentsList">Appointments List</string>
+    <string name="NotesList">Notes List</string>
 </resources>

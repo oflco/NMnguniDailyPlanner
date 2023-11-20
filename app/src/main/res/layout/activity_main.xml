@@ -13,20 +13,20 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/AppointmentDate"
-        android:inputType="text"
+        android:inputType="datetime"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+        tools:ignore="Autofill,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
     <EditText
-        android:id="@+id/et_appointmentMustdo"
+        android:id="@+id/et_appointmentMustdoContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/AppointmentMustDo"
+        android:hint="@string/AppointmentMustDoContent"
         android:inputType="text"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_appointmentMustdo"
+        app:layout_constraintTop_toBottomOf="@+id/et_appointmentMustdoContent"
         tools:ignore="Autofill,TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
     <TextView
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_appointmentContent" />
 
     <RadioButton
-        android:id="@+id/rdo_optionGroceries"
+        android:id="@+id/rdo_btnAppointmentGroceries"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -73,7 +73,7 @@
         tools:ignore="VisualLintButtonSize" />
 
     <RadioButton
-        android:id="@+id/rdo_optionGym"
+        android:id="@+id/rdo_btnAppointmentGym"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -81,11 +81,11 @@
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdo_optionGroceries"
+        app:layout_constraintTop_toBottomOf="@+id/rdo_btnAppointmentGroceries"
         tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:id="@+id/btn_appointmentView"
+        android:id="@+id/btn_appointmentsViewAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -93,7 +93,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/btn_appointmentInsert"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdo_optionGym" />
+        app:layout_constraintTop_toBottomOf="@+id/rdo_btnAppointmentGym" />
 
     <Button
         android:id="@+id/btn_appointmentInsert"
@@ -102,8 +102,8 @@
         android:text="@string/AppointmentInsert"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_appointmentView"
-        app:layout_constraintTop_toTopOf="@+id/btn_appointmentView" />
+        app:layout_constraintStart_toEndOf="@id/btn_appointmentsViewAll"
+        app:layout_constraintTop_toTopOf="@+id/btn_appointmentsViewAll" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lv_appointmentsList"
@@ -113,5 +113,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_appointmentView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_appointmentsList" />
+
+    <TextView
+        android:id="@+id/tv_appointmentsList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/AppointmentsList"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_appointmentsViewAll" />
 </androidx.constraintlayout.widget.ConstraintLayout>
