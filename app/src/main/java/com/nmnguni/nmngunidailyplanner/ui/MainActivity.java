@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     Button rdo_optionGroceries, rdo_optionGym;
     EditText et_appointmentDate, et_appointmentMustDo, et_appointmentContent;
     ListView lv_appointmentList;
+    DataBaseHelper dataBaseHelper;
+    ArrayAdapter appointmentsArrayAdapter;
+    List<AppointmentsEntity> appointmentsList;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,15 +53,34 @@ public class MainActivity extends AppCompatActivity {
         et_appointmentContent = findViewById(R.id.et_appointmentContent);
         lv_appointmentList = findViewById(R.id.lv_appointmentsList);
 
+        // Create an Android array adapter for appointments list view UI control.
+        appointmentsArrayAdapter = new ArrayAdapter<AppointmentsEntity>(
+                MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                appointmentsList
+        );
+
+        // Link the appointmentsArrayAdapter with the appointments list view UI control.
+        lv_appointmentList.setAdapter(appointmentsArrayAdapter);
+
         // Button listeners for the add view all buttons.
         btn_appointmentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(MainActivity.this, "Button Appointment View clicked", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivity.this, appointmentsList.toString(), Toast.LENGTH_SHORT).show();
                 DataBaseHelper dataBaseHelper = new DataBaseHelper(MainActivity.this);
-                List<AppointmentsEntity> appointmentsList = dataBaseHelper.appointmentsEntityGetAll();
+                appointmentsList = dataBaseHelper.appointmentsEntityGetAll();
 
-                Toast.makeText(MainActivity.this, appointmentsList.toString(), Toast.LENGTH_SHORT).show();
+                // Create an Android array adapter for appointments list view UI control.
+                appointmentsArrayAdapter = new ArrayAdapter<AppointmentsEntity>(
+             MainActivity.this,
+                    android.R.layout.simple_list_item_1,
+                    appointmentsList
+                );
+
+                // Link the appointmentsArrayAdapter with the appointments list view UI control.
+                lv_appointmentList.setAdapter(appointmentsArrayAdapter);
+
             }
         });
 
@@ -121,5 +145,20 @@ public class MainActivity extends AppCompatActivity {
             return recordEntry;
             }
         });
+
+        // Appointments list view delete one appointment, item click listener.
+        lv_appointmentList.setOnClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        }) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppointmentsEntity clickedAppointment = (AppointmentsEntity) parent.getItemAtPosition(position);
+                dataBaseHelper.appointmentsEntityDeleteOne(clickedAppointment);
+                ShowAppointmentsListOnListView(dataBaseHelper);
+                Toast.makeText(MainActivity.this, "Deleted " + clickedAppointment.toString(), Toast.LENGTH_SHORT);
+            }
+        };
     }
 }

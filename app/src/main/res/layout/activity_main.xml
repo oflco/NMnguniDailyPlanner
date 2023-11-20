@@ -105,16 +105,6 @@
         app:layout_constraintStart_toEndOf="@id/btn_appointmentsViewAll"
         app:layout_constraintTop_toTopOf="@+id/btn_appointmentsViewAll" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv_appointmentsList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_appointmentsList" />
-
     <TextView
         android:id="@+id/tv_appointmentsList"
         android:layout_width="0dp"
@@ -127,4 +117,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_appointmentsViewAll" />
+
+    <ListView
+        android:id="@+id/lv_appointmentsList"
+        android:layout_width="480dp"
+        android:layout_height="439dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_appointmentsList" />
 </androidx.constraintlayout.widget.ConstraintLayout>

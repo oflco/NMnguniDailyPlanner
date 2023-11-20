@@ -23,8 +23,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_APPOINTMENT_OPTION_GROCERIES = "APPOINTMENT_OPTION_GROCERIES";
     public static final String COLUMN_APPOINTMENT_OPTION_GYM = "APPOINTMENT_OPTION_GYM";
 
+    public static final String NOTES_TABLE = "NOTES";
+    public static final String COLUMN_NOTE_ID = "NOTE_ID";
+    public static final String COLUMN_NOTE_DATE = "NOTE_DATE";
+    public static final String COLUMN_NOTE_TITLE = "NOTE_TITLE";
+    public static final String COLUMN_NOTE_CONTENT = "NOTE_CONTENT";
+
     public DataBaseHelper(@Nullable Context context) {
-        super(context, "planner.db", null, 1);
+        super(context, "nmngunidailyplannerdb.db", null, 1);
     }
 
     // This method is called the first time a database is accessed.
@@ -44,7 +50,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTableAppointments);
 
         // Create table statement: Notes table.
-        String createTableNotes = "";
+        String createTableNotes = "CREATE TABLE " + NOTES_TABLE +
+            "(" +
+                COLUMN_NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NOTE_DATE + " TEXT, " +
+                COLUMN_NOTE_TITLE + " TEXT, " +
+                COLUMN_NOTE_CONTENT + " TEXT" +
+            ")";
         db.execSQL(createTableNotes);
     }
 
@@ -74,6 +86,27 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long insertedRowId = db.insert(APPOINTMENTS_TABLE, null, contentValues);
 
         // Check if the newly inserted row ID was a success row, or if an error occurred (-1).
+        if (insertedRowId == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean notesEntityInsertOne(NotesEntity notesEntity) {
+        List<NotesEntity> recordsList = new ArrayList<>();
+        String queryString = "SELECT * FROM " + NOTES_TABLE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_NOTE_DATE, notesEntity.getNoteDate().getTime());
+        contentValues.put(COLUMN_NOTE_TITLE, notesEntity.getNoteTitle());
+        contentValues.put(COLUMN_NOTE_CONTENT, notesEntity.getNote_Content());
+
+        long insertedRowId = db.insert(APPOINTMENTS_TABLE, null, contentValues);
+
         if (insertedRowId == -1) {
             return false;
         }
@@ -144,5 +177,71 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         // Return the records list from the method (data returned to the MainActivity).
         return recordsList;
+    }
+
+    public List<NotesEntity> notesEntityGetAll() {
+        List<NotesEntity> recordsList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + NOTES_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int noteId = cursor.getInt(0);
+                Date noteDate = ((java.sql.Date.valueOf(cursor.getString(1))));
+                String noteTitle = cursor.getString(2);
+                String noteContent = cursor.getString(3);
+
+                NotesEntity newNote = new NotesEntity(
+                        noteId,
+                        noteDate,
+                        noteTitle,
+                        noteContent
+                );
+
+                recordsList.add(newNote);
+            } while (cursor.moveToNext());
+        } else {
+            // If there are no results from the database table (Notes),
+            // then no need to add any records to the recordsList.
+
+        }
+
+        // Close both the cursor and the db connections once done.
+        cursor.close();
+        db.close();
+
+        // Return the records list from the method (data returned to the MainActivity).
+        return recordsList;
+    }
+    public boolean notesEntityDeleteOne(NotesEntity notesEntity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + NOTES_TABLE + " WHERE " + COLUMN_NOTE_ID
+            + " = " + notesEntity.getNoteId();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToNext()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean notesEntityDeleteOne(AppointmentsEntity notesEntity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + NOTES_TABLE + " WHERE " + COLUMN_NOTE_ID
+                + " = " + notesEntity.getNoteId();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToNext()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
