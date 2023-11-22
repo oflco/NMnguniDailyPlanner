@@ -2,6 +2,7 @@ package com.nmnguni.nmngunidailyplanner.data;
 
 import java.util.Date;
 
+// NotesEntity class.
 public class NotesEntity {
     private  int noteId;
     private Date noteDate;
@@ -12,7 +13,7 @@ public class NotesEntity {
     public NotesEntity() {
     }
 
-    // Constructor: Default
+    // Constructor: Parameterized
     public NotesEntity(int noteId, Date noteDate, String noteTitle, String noteContent) {
         this.noteId = noteId;
         this.noteDate = noteDate;
@@ -20,18 +21,19 @@ public class NotesEntity {
         this.noteContent = noteContent;
     }
 
-    // Method: toString is necessary for printing the contents of a class.
+    // toString method necessary to print the contents of this class.
     @Override
     public String toString() {
-        return "NotesEntity{" +
-                "noteId=" + noteId +
-                ", noteDate=" + noteDate +
-                ", noteTitle='" + noteTitle + '\'' +
-                ", noteContent='" + noteContent + '\'' +
-                '}';
+        return
+            "NotesEntity{" +
+            "noteId=" + noteId +
+            ", noteDate=" + noteDate +
+            ", noteTitle='" + noteTitle + '\'' +
+            ", noteContent='" + noteContent + '\'' +
+            '}';
     }
 
-    // Properties: Getters and Setters.
+    // Properties for getters and setters.
     public int getNoteId() {
         return noteId;
     }
@@ -63,6 +65,4 @@ public class NotesEntity {
     public void setNoteContent(String noteContent) {
         this.noteContent = noteContent;
     }
-
-
 }

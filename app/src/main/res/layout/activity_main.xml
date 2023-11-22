@@ -85,25 +85,25 @@
         tools:ignore="VisualLintButtonSize" />
 
     <Button
-        android:id="@+id/btn_appointmentsViewAll"
+        android:id="@+id/btn_appointmentsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/AppointmentView"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/btn_appointmentInsert"
+        app:layout_constraintEnd_toStartOf="@+id/btn_appointmentsInsert"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rdo_btnAppointmentGym" />
 
     <Button
-        android:id="@+id/btn_appointmentInsert"
+        android:id="@+id/btn_appointmentsInsert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/AppointmentInsert"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_appointmentsViewAll"
-        app:layout_constraintTop_toTopOf="@+id/btn_appointmentsViewAll" />
+        app:layout_constraintStart_toEndOf="@id/btn_appointmentsView"
+        app:layout_constraintTop_toTopOf="@+id/btn_appointmentsView" />
 
     <TextView
         android:id="@+id/tv_appointmentsList"
@@ -116,15 +116,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_appointmentsViewAll" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_appointmentsView" />
 
-    <ListView
-        android:id="@+id/lv_appointmentsList"
-        android:layout_width="480dp"
-        android:layout_height="439dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_appointmentsList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_appointmentsList" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

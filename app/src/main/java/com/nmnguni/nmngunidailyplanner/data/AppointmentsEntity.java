@@ -1,5 +1,7 @@
 package com.nmnguni.nmngunidailyplanner.data;
 
+import android.content.Entity;
+
 import java.util.Date;
 
 public class AppointmentsEntity {
@@ -28,17 +30,32 @@ public class AppointmentsEntity {
         this.appointmentOptionGym = appointmentOptionGym;
     }
 
-    // Method: toString is necessary for printing the contents of a class.
+    /*
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Entity: ").append(getEntityValues());
+        for (Entity.NamedContentValues namedValue : getSubValues()) {
+            sb.append("\n  ").append(namedValue.uri);
+            sb.append("\n  -> ").append(namedValue.values);
+        }
+        return sb.toString();
+    }
+    */
+
+    /**
+     * Returns a string representation of the {@code AppointmentsEntity} class.
+     */
     @Override
     public String toString() {
-        return "AppointmentsEntity{" +
-                "appointmentId=" + appointmentId +
-                ", appointmentDate=" + appointmentDate +
-                ", appointmentMustDoContent='" + appointmentMustDoContent + '\'' +
-                ", appointmentsContent='" + appointmentsContent + '\'' +
-                ", appointmentOptionGroceries=" + appointmentOptionGroceries +
-                ", appointmentOptionGym=" + appointmentOptionGym +
-                '}';
+        return
+            "AppointmentsEntity{" +
+            "appointmentId=" + appointmentId +
+            ", appointmentDate=" + appointmentDate +
+            ", appointmentMustDoContent='" + appointmentMustDoContent + '\'' +
+            ", appointmentsContent='" + appointmentsContent + '\'' +
+            ", appointmentOptionGroceries=" + appointmentOptionGroceries +
+            ", appointmentOptionGym=" + appointmentOptionGym +
+            '}';
     }
 
     // Properties: Getters and Setters.
