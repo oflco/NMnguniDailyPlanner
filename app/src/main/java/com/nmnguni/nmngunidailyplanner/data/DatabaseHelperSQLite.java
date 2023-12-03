@@ -12,8 +12,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// DataBaseHelper class to manage database creation and version management.
-public class DatabaseHelper extends SQLiteOpenHelper {
+// DatabaseHelperSQLite class to manage database creation and version management.
+
+/**
+ * The {@link DatabaseHelperSQLite} class is a subclass of the {@link SQLiteOpenHelper}
+ * abstract class and it helps to manage database creation and version
+ * management.
+ * <p></p>
+ * The context interface parameter provides global information
+ * about an application environment. creates a
+ * new SQLite database and its file, if not exists.
+ */
+public class DatabaseHelperSQLite extends SQLiteOpenHelper {
     //  table static constant variables.
     public static final String PLANNER_DATABASE_FILE = "nmngunidailyplanner.db";
     public static final String PLANNER_DATABASE_MODEL = "PlannerModel";
@@ -35,18 +45,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NOTE_CONTENT = "NOTE_CONTENT";
 
     /**
-     * {@link DatabaseHelper} class that extends the {@link SQLiteOpenHelper}
+     * Constructs a {@link DatabaseHelper} class that extends the
+     * {@link SQLiteOpenHelper}
      * abstract class to manage database creation and version management.
      * <p></p>
      * The context interface parameter provides global information
      * about an application environment. creates a
      * new SQLite database and its file, if not exists.
      */
-    public DatabaseHelper(@Nullable Context context) {
+    public DatabaseHelperSQLite(@Nullable Context context) {
         super(context, PLANNER_DATABASE_FILE, null, 1);
     }
 
-    // DatabaseHelper method called the first time a database is accessed.
+    /**
+     * {@link SQLiteDatabase} class method {@link onCreate} called the first
+     * time a database is accessed.
+     *
+     * @param db database object that executes queries.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         // SQL create table statement: Appointments table.
@@ -72,15 +88,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTableNotes);
     }
 
-    // DataBaseHelper method called if the database version number changes.
-    // It prevents previous user apps from breaking when a database changes.
+    /**
+     * {@link SQLiteDatabase} class method {@link onUpgrade} called if the
+     * database version number changes. It prevents previous application users
+     * from breaking when a database changes.
+     *
+     * @param db database object that executes queries.
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 
     /**
-     * AppointmentsEntity insert one record method.
+     * {@link DatabaseHelperSQLite} class method {@link appointmentsEntityInsertOne}
+     * used to insert one record for an {@link AppointmentsEntity}.
+     *
+     * @param appointmentsEntity object record to insert.
+     * @return {@link boolean} {@code true} for success, otherwise
+     * {@code false}.
      */
     public boolean appointmentsEntityInsertOne(AppointmentsEntity appointmentsEntity) {
         // SQLite getWritableDatabase method only used when you plan to
@@ -91,25 +117,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(
-                COLUMN_APPOINTMENT_DATE, appointmentsEntity.getAppointmentDate().getTime()
+            COLUMN_APPOINTMENT_DATE,
+            appointmentsEntity.getAppointmentDate().getTime()
         );
-        contentValues.put(COLUMN_APPOINTMENT_MUST_DO_CONTENT, appointmentsEntity.getAppointmentMustDoContent());
-        contentValues.put(COLUMN_APPOINTMENT_CONTENT, appointmentsEntity.getAppointmentsContent());
-        contentValues.put(COLUMN_APPOINTMENT_OPTION_GROCERIES, appointmentsEntity.getAppointmentOptionGroceries());
-        contentValues.put(COLUMN_APPOINTMENT_OPTION_GYM, appointmentsEntity.getAppointmentOptionGym());
+        contentValues.put(
+            COLUMN_APPOINTMENT_MUST_DO_CONTENT,
+            appointmentsEntity.getAppointmentMustDoContent()
+        );
+        contentValues.put(
+            COLUMN_APPOINTMENT_CONTENT,
+            appointmentsEntity.getAppointmentsContent()
+        );
+        contentValues.put(
+            COLUMN_APPOINTMENT_OPTION_GROCERIES,
+            appointmentsEntity.getAppointmentOptionGroceries()
+        );
+        contentValues.put(
+            COLUMN_APPOINTMENT_OPTION_GYM,
+            appointmentsEntity.getAppointmentOptionGym()
+        );
 
-        long insertedRowId = db.insert(APPOINTMENTS_TABLE, null, contentValues);
+        long result = db.insert(APPOINTMENTS_TABLE, null, contentValues);
 
-        // Check if the newly inserted row ID was a success row, or if an error occurred (-1).
-        if (insertedRowId == -1) {
-            return false;
+        // Check if result was a success (inserted row ID), or error (-1).
+        if (result != -1) {
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
 
-    // AppointmentsEntity get all records method.
+    /**
+     * {@link DatabaseHelperSQLite} class method {@link appointmentsEntityGetAll}
+     * used to get all records of an {@link AppointmentsEntity}.
+     *
+     * @param appointmentsEntity object record to insert.
+     *
+     * @return records {@link List<AppointmentsEntity>} of type
+     * {@link AppointmentsEntity}.
+     */
     public List<AppointmentsEntity> appointmentsEntityGetAll() {
         // Create an empty records list variable of AppointmentsEntity type.
         List<AppointmentsEntity> recordsList = new ArrayList<>();
